@@ -1,0 +1,66 @@
+--@D:\Database\18413696_object_inserting.txt
+
+--Database II [Week = 4]
+
+--Ramesh Kunwar [18413696]
+
+--Inserting values in object_table bill addresses.
+
+INSERT INTO bill_addresses(street,city,country)
+VALUES('54 FESTIVE ROAD','NORTHAMPTON','UK');
+
+INSERT INTO bill_addresses(street,city,country)
+VALUES('30 ENGLISH STREET','BEDFORD','UK');
+
+--Inserting Data into a Table with a Ref To An object table.
+
+INSERT INTO customers(customer_id,customer_name,invoice_address)
+SELECT 1,'MANDY MORRELL',REF(b)
+FROM bill_addresses b
+WHERE street='54 FESTIVE ROAD';
+
+
+--Updating Data in a Table with a Ref To An object table.
+
+INSERT INTO states(state,country)
+VALUES('BIHAR','INDIA');
+
+
+INSERT INTO sites(site_id)
+VALUES(1);
+
+UPDATE sites si
+SET si.state_ref=(
+SELECT REF(st)
+FROM states st
+WHERE st.state='BIHAR')
+WHERE si.site_id=1;
+
+
+--Deleting the customers of ref.
+DROP TABLE customers
+
+--Inserting Data into Object Columns.
+
+INSERT INTO customers(customer_id,customer_name,invoice_address)
+VALUES(2,'CAROLE MORRELL',invoice_address_type('1 MY WAY','LUTON','UK'));
+
+
+--Inserting Data into Object colums and tables.
+
+INSERT INTO states(state,country)
+VALUES('ALBERTA','CANADA');
+
+INSERT INTO states(state,country)
+VALUES('VICTORIA','AUSTRALIA');
+
+INSERT INTO states(state,country)
+VALUES('QUEENSLAND','AUSTRALIA');
+
+INSERT INTO states(state,country)
+VALUES('DELHI','INDIA');
+
+
+
+
+
