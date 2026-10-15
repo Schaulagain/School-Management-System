@@ -60,7 +60,7 @@ if(isset($_POST['submit'])){
     $id=$student->getLastInsertId();
     $login_criteria=[
         'login_email'=>$student_email,
-        'login_password'=>$student_firstname,
+        'login_password'=>password_hash($student_firstname, PASSWORD_DEFAULT),
         'user_type'=>'STUDENT',
         'user_id'=>$id
     ];

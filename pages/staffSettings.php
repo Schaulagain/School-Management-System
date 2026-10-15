@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
 			
 	$criteria = $_POST;
 	$criteria =[
-		'login_password'=>$_POST['login_password'],
+		'login_password'=>password_hash($_POST['login_password'], PASSWORD_DEFAULT),
 		'login_id'=>$_POST['login_id']
 	];
 	unset($_POST['submit']);

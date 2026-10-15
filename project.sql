@@ -39,7 +39,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_password`) VALUES
-(3, 'Mr.Adam Blake', '58ecfdc7967e35bac8738978c0070a2c');
+(3, 'Admin User', '58ecfdc7967e35bac8738978c0070a2c');
 
 -- --------------------------------------------------------
 
@@ -225,15 +225,11 @@ CREATE TABLE `login_detail` (
 --
 
 INSERT INTO `login_detail` (`login_id`, `login_email`, `login_password`, `user_type`, `user_id`, `l_archive`) VALUES
-(1, 'sangita.satyal@gmail.com', 'Sangita', 'STAFF', 13, 1),
-(2, 'admin@admin.com', 'admin', 'ADMIN', 3, 1),
-(14, 'shivani@gmail.com', 'Shivani', 'STUDENT', 42, 1),
-(16, 'rameshkunwarmnr@gmail.com', 'Ramesh', 'STUDENT', 43, 1),
-(18, 'zxcsdvfbgn', 'sadsfgfgnm', 'STAFF', 17, 1),
-(19, 'sADSFDGFHGH', 'adsgdbfngmhj', 'STAFF', 18, 1),
-(21, 'ASDFFGH', 'sadfghgh', 'STAFF', 20, 1),
-(22, 'asdfgh', 'sadfb', 'STUDENT', 48, 1),
-(24, 'pdp.kht@gmail.com', 'Pradeep', 'STUDENT', 56, 1);
+(1, 'maya.shrestha@example.com', '$2y$10$6H9Wm742sALvlMOZbwq8Ie9E0oHfeWmuvnTiSj6qsBaonv/cy8O0W', 'STAFF', 13, 1),
+(2, 'admin@example.com', '$2y$10$6H9Wm742sALvlMOZbwq8Ie9E0oHfeWmuvnTiSj6qsBaonv/cy8O0W', 'ADMIN', 3, 1),
+(14, 'bikash.thapa@example.com', '$2y$10$6H9Wm742sALvlMOZbwq8Ie9E0oHfeWmuvnTiSj6qsBaonv/cy8O0W', 'STUDENT', 42, 1),
+(16, 'sita.rai@example.com', '$2y$10$6H9Wm742sALvlMOZbwq8Ie9E0oHfeWmuvnTiSj6qsBaonv/cy8O0W', 'STUDENT', 43, 1),
+(24, 'john.smith@example.com', '$2y$10$6H9Wm742sALvlMOZbwq8Ie9E0oHfeWmuvnTiSj6qsBaonv/cy8O0W', 'STUDENT', 56, 1);
 
 -- --------------------------------------------------------
 
@@ -329,7 +325,7 @@ CREATE TABLE `module_leaders` (
   `hire_date` date NOT NULL,
   `qualification` varchar(255) NOT NULL,
   `staff_photo` varchar(255) NOT NULL,
-  `staff_password` varchar(10) NOT NULL,
+  `staff_password` varchar(10) DEFAULT NULL,
   `leader_archive` int(1) NOT NULL DEFAULT '1',
   `staff_type` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -339,9 +335,9 @@ CREATE TABLE `module_leaders` (
 --
 
 INSERT INTO `module_leaders` (`staff_id`, `staff_firstname`, `staff_surname`, `staff_dob`, `staff_address`, `staff_contact`, `staff_email`, `staff_gender`, `hire_date`, `qualification`, `staff_photo`, `staff_password`, `leader_archive`, `staff_type`) VALUES
-(13, 'Sangita ', 'Satyal', '1990-02-13', 'Bhaktapur', '', 'sangita.satyal@gmail.com', '1', '2016-06-22', 'MSc (Information System)', 'sangitamam.jpg', 'Sangita ', 1, 0),
-(14, 'Ganesh ', 'Khatri', '1990-12-19', 'Kanchanpur', '9865234175', 'ganesh,khatri@gmail.com', '1', '2015-05-18', 'MIT', 'ganeshsir.jpg', 'Ganesh ', 1, 0),
-(15, 'Kumar', 'Lamichhane', '1987-06-18', 'Kathmandu,Mulpani', '9845692312', 'kumar.lam12@gmail.com', '1', '2017-07-27', 'MSc', 'kumar sir.jpg', 'Kumar', 1, 0);
+(13, 'Maya', 'Shrestha', '1985-03-10', 'Kathmandu, Nepal', '9800000011', 'maya.shrestha@example.com', '1', '2016-06-22', 'MSc (Information System)', 'sangitamam.jpg', NULL, 1, 0),
+(14, 'Ram', 'Karki', '1982-07-19', 'Bhaktapur, Nepal', '9800000012', 'ram.karki@example.com', '1', '2015-05-18', 'MIT', 'ganeshsir.jpg', NULL, 1, 0),
+(15, 'Emma', 'Jones', '1988-11-30', 'Northampton, UK', '9800000013', 'emma.jones@example.com', '1', '2017-07-27', 'MSc', 'kumar sir.jpg', NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -370,10 +366,10 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `student_firstname`, `student_surname`, `student_dob`, `student_address`, `student_contact`, `student_gender`, `student_email`, `level`, `student_photo`, `modules`, `s_archive`, `student_password`) VALUES
-(40, 'Suman', 'Chaulagain', '1999-08-19', 'Kathmandu,Nepal', '+977-9865412396', '1', 'suman.cha@gmail.com', '2', '56140477_837034103307204_560160011385307136_n.jpg', '50,54', 1, NULL),
-(42, 'Shivani', 'Purwar', '2000-10-07', 'Dhangadi,Kailali', '9845631245', '1', 'shivani@gmail.com', '1', 'BeautyPlus_20170621091634_fast.jpg', '50,52,54,55', 1, NULL),
-(43, 'Mark', 'Williams', '1999-04-15', 'Northampton,Uk', '9865941543', '1', 'rameshkunwarmnr@gmail.com', '1', 'qqqq.jpg', '50,52,54,55', 1, NULL),
-(56, 'Pradeep', 'Khatri', '0000-00-00', 'Pokhara,Nepal', '9865234175', '1', 'pdp.kht@gmail.com', '1', '', '', 1, NULL);
+(40, 'Asha', 'Gurung', '2000-01-15', 'Pokhara, Nepal', '9800000001', '1', 'asha.gurung@example.com', '2', '56140477_837034103307204_560160011385307136_n.jpg', '50,54', 1, NULL),
+(42, 'Bikash', 'Thapa', '1999-06-02', 'Kathmandu, Nepal', '9800000002', '1', 'bikash.thapa@example.com', '1', 'BeautyPlus_20170621091634_fast.jpg', '50,52,54,55', 1, NULL),
+(43, 'Sita', 'Rai', '2000-09-21', 'Lalitpur, Nepal', '9800000003', '1', 'sita.rai@example.com', '1', 'qqqq.jpg', '50,52,54,55', 1, NULL),
+(56, 'John', 'Smith', '1998-12-04', 'Northampton, UK', '9800000004', '1', 'john.smith@example.com', '1', '', '', 1, NULL);
 
 -- --------------------------------------------------------
 
