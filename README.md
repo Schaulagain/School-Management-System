@@ -1,31 +1,20 @@
 # School Management Web System
 
-A web portal for a fictional college ("Woodland University College") with separate dashboards for **admins**, **staff** and **students**. It's written in plain PHP with no framework, using PDO and MySQL.
+A web portal for a made-up college called Woodland University College. Admins, staff and students each get their own dashboard. It's plain PHP with no framework, using PDO and MySQL.
 
-Built as a university group project in 2020. In 2026 I came back to it to fix password storage and remove personal data from the demo database.
+This was a group project at university in 2020. In 2026 I went back to it to fix how passwords were stored and to take real-looking personal data out of the demo database.
 
-## Features
+## What it does
 
-**Admin**
-- Manage students, staff, module leaders and modules, with archiving instead of hard deletes
-- Bulk-import students from a CSV file
-- Build timetables and post college-wide announcements
+Admins manage students, staff, module leaders and modules. Records get archived rather than deleted. Admins can also import students from a CSV file, build timetables and post announcements to the whole college.
 
-**Staff**
-- Record attendance and grades and add assessments
-- Upload module content and answer students' questions in module discussions
-- Message students and post module announcements
+Staff take attendance, enter grades, add assessments and upload module content. They can message students, post module announcements and answer questions in each module's discussion.
 
-**Student**
-- View modules, timetable, grades, attendance and assignments
-- Ask questions in module discussions and read announcements
+Students can see their modules, timetable, grades, attendance and assignments, read announcements and ask questions in the discussions.
 
-## How it's built
+## Code layout
 
-- **Front controller:** `public_html/index.php` handles login, starts the session and routes `?page=…` to the scripts in `pages/`.
-- **Data access:** a small `DatabaseTable` class (`databasetable/`) wraps PDO with `find`, `findAll`, `insert`, `update` and `save`. Every query uses **prepared statements**.
-- **Views:** PHP templates per role in `templates/`, rendered through a `loadTemplate` helper, with Bootstrap for the UI.
-- **Database:** MySQL schema and demo data in `project.sql` (14 tables).
+Everything goes through `public_html/index.php`. It handles login, starts the session and sends `?page=...` to the matching script in `pages/`. Database access goes through a small `DatabaseTable` class in `databasetable/` that wraps PDO (`find`, `findAll`, `insert`, `update`, `save`), and all queries use prepared statements. The views are PHP templates in `templates/`, one set per role, styled with Bootstrap. `project.sql` has the schema (14 tables) and demo data.
 
 ## Running locally
 
@@ -41,14 +30,12 @@ Demo accounts (all use the password `password`):
 | Staff | `maya.shrestha@example.com` |
 | Student | `sita.rai@example.com` |
 
-## 2026 updates
+## Changes in 2026
 
-- **Passwords are now hashed** with `password_hash()` and checked with `password_verify()`. Previously they were stored and compared as plain text. Duplicate plain-text copies in the staff and student tables are no longer written.
-- **Demo data is fictional.** All names, emails and phone numbers were replaced with made-up ones.
-- Removed a website-copier cache folder and an Office lock file that had been committed by accident.
+- Passwords used to be stored and compared as plain text. They're now hashed with `password_hash()` and checked with `password_verify()`, and the extra plain-text copies in the staff and student tables are no longer saved.
+- The names, emails and phone numbers in the demo data are all made up now.
+- Deleted a website-copier cache folder and an Office lock file that had been committed by mistake.
 
-## What I'd do differently today
+## Known problems
 
-- Use a framework like Laravel for routing, validation, CSRF protection and migrations instead of hand-rolled equivalents.
-- Give new accounts a random one-time password or an invite link. Currently their temporary password is their first name (stored hashed) until they change it in Settings.
-- Load database credentials from environment variables instead of committing them in `connect.php`.
+New accounts get their first name as a temporary password (hashed) until they change it in Settings. A random password or an invite link would be better. The database login is also hard-coded in `connect.php` instead of coming from environment variables. If I wrote this today I'd use Laravel, which would handle routing, validation, CSRF protection and migrations.
