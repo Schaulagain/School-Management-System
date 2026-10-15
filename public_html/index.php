@@ -12,7 +12,7 @@ if(isset($_POST['login'])){
 		$fetch=$login->find('login_email',$_POST['email']);
 		if($fetch->rowCount()>0){
 			$data=$fetch->fetch();
-			if($password==$data['login_password']){
+			if(password_verify($password, $data['login_password'])){
 				$_SESSION['sessUserId']=$data['user_id'];
 				$_SESSION['logged_in']=true;
 				$_SESSION['user_type']=$data['user_type'];

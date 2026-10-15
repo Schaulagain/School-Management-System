@@ -30,7 +30,6 @@ if(isset($_POST['submit'])){
 		'qualification'=>$_POST['qualification'],
 		'staff_photo'=>$_POST['staff_photo'],
 		'staff_id'=>$_POST['staff_id'],
-		'staff_password'=>$_POST['staff_firstname'],
 		'staff_type'=>$_POST['staff_type'],
 
 	];
@@ -39,7 +38,7 @@ if(isset($_POST['submit'])){
 	$id=$student->getLastInsertId();
 	$login_criteria=[
 		'login_email'=>$_POST['staff_email'],
-		'login_password'=>$_POST['staff_firstname'],
+		'login_password'=>password_hash($_POST['staff_firstname'], PASSWORD_DEFAULT),
 		'user_type'=>'STAFF',
 		'user_id'=>$id
 	];

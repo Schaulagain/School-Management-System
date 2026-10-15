@@ -31,8 +31,7 @@ if(isset($_POST['submit'])){
 		'student_gender'=>$_POST['student_gender'],
 		'level'=>$_POST['level'],
 		'student_id'=>$_POST['student_id'],
-		'student_photo'=>$_POST['student_photo'],
-		'student_password'=>$_POST['student_firstname']
+		'student_photo'=>$_POST['student_photo']
 	];
 	unset($_POST['submit']);
 	 $file="..photos/".basename($_FILES['student_photo']['name']);
@@ -42,7 +41,7 @@ if(isset($_POST['submit'])){
 	$id=$student->getLastInsertId();
 	$login_criteria=[
 		'login_email'=>$_POST['student_email'],
-		'login_password'=>$_POST['student_firstname'],
+		'login_password'=>password_hash($_POST['student_firstname'], PASSWORD_DEFAULT),
 		'user_type'=>'STUDENT',
 		'user_id'=>$id
 	];

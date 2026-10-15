@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
 	$criteria =[
 		'login_id'=>$_POST['login_id'],
 		'login_email'=>$_POST['login_email'],
-		'login_password'=>$_POST['login_password']
+		'login_password'=>password_hash($_POST['login_password'], PASSWORD_DEFAULT)
 	];
 	unset($_POST['submit']);
 	$add=$login->save($criteria,'login_id');
