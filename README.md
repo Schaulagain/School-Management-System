@@ -2,11 +2,11 @@
 
 A web portal for a made-up college called Woodland University College. Admins, staff and students each get their own dashboard. It's written in plain PHP with PDO and MySQL.
 
-This was a group project at university in 2020. In 2026 I went back to it to fix how passwords were stored and to take real-looking personal data out of the demo database.
+This was a group project at university in 2020. In 2026 it got a cleanup: passwords are stored properly now, and the demo database has no real-looking personal data.
 
 ## What it does
 
-Admins manage students, staff, module leaders and modules. Old records get archived. Admins can also import students from a CSV file, build timetables and post announcements to the whole college.
+Admins manage students, staff and modules, and archive old records. Admins can also import students from a CSV file, build timetables and post announcements to the whole college.
 
 Staff take attendance, enter grades, add assessments and upload module content. They can message students, post module announcements and answer questions in each module's discussion.
 
@@ -14,7 +14,7 @@ Students can see their modules, timetable, grades, attendance and assignments, r
 
 ## Code layout
 
-Everything goes through `public_html/index.php`. It handles login, starts the session and sends `?page=...` to the matching script in `pages/`. Database access goes through a small `DatabaseTable` class in `databasetable/` that wraps PDO (`find`, `findAll`, `insert`, `update`, `save`), and all queries use prepared statements. The views are PHP templates in `templates/`, one set per role, styled with Bootstrap. `project.sql` has the schema (14 tables) and demo data.
+Everything goes through `public_html/index.php`. It handles login, starts the session and sends `?page=...` to the matching script in `pages/`. Database access goes through a small `DatabaseTable` class in `databasetable/` that wraps PDO (`find`, `findAll`, `insert`, `update`, `save`), and all queries use prepared statements. The views are PHP templates in `templates/`, one set per role, styled with Bootstrap. `project.sql` has the schema (14 tables) and demo data. [`GLOSSARY.md`](GLOSSARY.md) explains the words the portal uses, like *staff* and *module*.
 
 ## Running locally
 
@@ -38,7 +38,7 @@ Demo accounts (all use the password `password`):
 
 ## Known problems
 
-New accounts get their first name as a temporary password (hashed) until they change it in Settings. A random password or an invite link would be better. The database login is also hard-coded in `connect.php` instead of coming from environment variables. If I wrote this today I'd use Laravel, which would handle routing, validation, CSRF protection and migrations.
+New accounts get their first name as a temporary password (hashed) until they change it in Settings. A random password or an invite link would be better. The database login is also hard-coded in `connect.php`, where environment variables would be the better home for it. If I wrote this today I'd use Laravel, which would handle routing, validation, CSRF protection and migrations.
 
 ## How this was built
 
