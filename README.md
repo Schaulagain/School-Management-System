@@ -39,3 +39,7 @@ Demo accounts (all use the password `password`):
 ## Known problems
 
 New accounts get their first name as a temporary password (hashed) until they change it in Settings. A random password or an invite link would be better. The database login is also hard-coded in `connect.php` instead of coming from environment variables. If I wrote this today I'd use Laravel, which would handle routing, validation, CSRF protection and migrations.
+
+## How this was built
+
+I wrote the original version myself in 2020 with my university group. In 2026, AI coding agents (mainly **Claude**, in Claude Code) cleaned it up and wrote this README, and I reviewed their changes.
